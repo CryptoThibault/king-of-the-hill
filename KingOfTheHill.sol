@@ -95,6 +95,10 @@ contract KingOfTheHill {
     }
 
     function withdrawall() public {
+        require(
+            msg.sender == _owner,
+            "KingOfTheHill: access reserved to owner"
+        );
         payable(msg.sender).transfer(address(this).balance);
     }
 
