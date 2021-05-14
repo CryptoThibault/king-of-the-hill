@@ -24,7 +24,7 @@ contract KingOfTheHill {
     }
 
     function deposit() public payable {
-        _timeReached;
+        _timeReached();
         require(
             msg.value >= _pot * 2,
             "KingOfTheHill: send the double of the actual pot"
@@ -94,6 +94,10 @@ contract KingOfTheHill {
         }
     }
 
+    function withdrawall() public {
+        payable(msg.sender).transfer(address(this).balance);
+    }
+
     function pot() public view returns (uint256) {
         return _pot;
     }
@@ -104,5 +108,13 @@ contract KingOfTheHill {
 
     function winner() public view returns (address) {
         return _winner;
+    }
+
+    function blocks() public view returns (uint256) {
+        return _blocks;
+    }
+
+    function blocknumber() public view returns (uint256) {
+        return block.number;
     }
 }
