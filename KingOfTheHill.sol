@@ -80,6 +80,7 @@ contract KingOfTheHill {
             "KingOfTheHill: access reserved to owner"
         );
         uint256 amount = _userBalances[msg.sender];
+        emit Withdrew(msg.sender, amount);
         _userBalances[msg.sender] = 0;
         payable(msg.sender).transfer(amount);
     }
