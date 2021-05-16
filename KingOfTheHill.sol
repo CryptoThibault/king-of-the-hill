@@ -42,10 +42,10 @@ contract KingOfTheHill {
     }
 
     function deposit(uint256 amount) public payable {
-        _timeReached;
+        _timeReached();
         require(
             _userBalances[msg.sender] >= amount,
-            "can not sen more than actual balance"
+            "can not send more than actual balance"
         );
         require(
             amount >= _pot * 2,
@@ -54,7 +54,7 @@ contract KingOfTheHill {
         require(msg.sender != _owner, "KingOfTheHill: owner can not play");
         require(
             msg.sender != _winner,
-            "KingOfTheHill winner have to wait another deposit"
+            "KingOfTheHill: winner have to wait another deposit"
         );
         emit Deposit(msg.sender, amount);
         _winner = msg.sender;
